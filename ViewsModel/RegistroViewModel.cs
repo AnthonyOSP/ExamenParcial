@@ -1,15 +1,20 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using ExamenParcial.Models;
 
-namespace ExamenParcial.Models
+namespace ExamenParcial.ViewModel
 {
-    [Table("t_transacciones")]
-    public class Transacciones
+    public class RegistroViewModel
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Transacciones? FormRegistro { get; set; }
+        public IEnumerable<Transacciones>? ListRegistro { get; set; }
+
+    }
+
+    public class FormRegistro
+    {
         public long Id { get; set; }
         public string? Remitente { get; set; }
         public string? Destinatario { get; set; }
@@ -21,6 +26,5 @@ namespace ExamenParcial.Models
         public decimal MontoRecibido { get; set; }
         public string? MonedaRecibido { get; set; }
         public string? Estado { get; set; }
-
     }
 }

@@ -8,7 +8,6 @@ using Microsoft.Extensions.Logging;
 
 namespace ExamenParcial.Controllers
 {
-    [Route("[controller]")]
     public class TransaccionesController : Controller
     {
         private readonly ILogger<TransaccionesController> _logger;
