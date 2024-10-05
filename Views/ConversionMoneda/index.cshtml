@@ -1,0 +1,83 @@
+@model ExamenParcial.ViewModel.ConversionViewModel
+
+@{
+    ViewData["Title"] = "Convertir Moneda";
+}
+
+<h2>Convertir Moneda</h2>
+
+<form asp-controller="ConversionMoneda" asp-action="Convertir" method="post">
+    <div class="form-group mb-3">
+        <label asp-for="FormConversion!.Usuario">Usuario:</label>
+        <input asp-for="FormConversion!.Usuario" class="form-control" id="FormContacto_Usuario" name="usuario"
+            required />
+        <label asp-for="FormConversion!.MontoEnviado">Monto:</label>
+        <input asp-for="FormConversion!.MontoEnviado" type="nuymber" class="form-control" id="FormContacto_MontoEnviado"
+            name="monto" required />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="FormConversion!.Moneda">Moneda solicitada:</label>
+        <select asp-for="FormConversion!.Moneda" class="form-control" id="moneda" name="moneda" required>
+            <option value="USD">USD</option>
+            <option value="BTC">BTC</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Convertir</button>
+</form>
+
+@if (TempData["MontoConvertido"] != null)
+{
+    <div class="alert alert-success mt-3">
+        <strong>Resultado:</strong> @TempData["MontoConvertido"] @TempData["Moneda"]
+    </div>
+}
+
+<div class="row justify-content-center">
+    <div class="col-sd-6">
+        <div class="tabla-responsive">
+            <table class="table table-hover caption-top">
+                <caption>Historial de Transacciones</caption>
+                <thead class="fw-bold table-dark">
+                    <td>ID</td>
+                    <td>Usuario</td>
+                    <td>Monto Enviado</td>
+                    <td>Moneda solicitada</td>
+                    <td>Monto Entregado</td>
+                </thead>
+                <tbody class="table-group-divider">
+                    @if (Model.ListConversion != null)
+                    {
+                        foreach (var item in Model.ListConversion)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Usuario)</td>
+                                <td>
+                                    @if (item.Moneda == "USD")
+                                    {
+                                        @item.MontoEnviado @:BTC
+                                    }
+                                    else
+                                    {
+                                        @item.MontoEnviado @:USD
+                                    }
+                                </td>
+                                <td>@Html.DisplayFor(modelItem => item.Moneda)</td>
+                                <td>
+                                    @if (item.Moneda == "USD")
+                                    {
+                                        @item.MontoRecibido.ToString("F2") @:USD
+                                    }
+                                    else
+                                    {
+                                        @item.MontoRecibido.ToString("F6") @:BTC
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

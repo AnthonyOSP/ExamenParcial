@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExamenParcial.Data;
@@ -9,4 +10,8 @@ public class ApplicationDbContext : IdentityDbContext
         : base(options)
     {
     }
+
+    public DbSet<ExamenParcial.Models.Transacciones> DataTransacciones { get; set; }
+    public DbSet<ExamenParcial.Models.HistorialConversiones> DataHistorial { get; set; }
+
 }
