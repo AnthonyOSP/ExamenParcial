@@ -10,6 +10,7 @@ namespace ExamenParcial.ViewModel
     {
         public Transacciones? FormRegistro { get; set; }
         public IEnumerable<Transacciones>? ListRegistro { get; set; }
+        
 
     }
 

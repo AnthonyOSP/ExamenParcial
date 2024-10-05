@@ -1,0 +1,54 @@
+@model ExamenParcial.ViewModel.RegistroViewModel
+
+@{
+    ViewData["Title"] = "Listar Remesas";
+}
+
+<div class="container" style="margin-top:2rem;">
+    <h1 class="text-center mb-4">Lista de Remesas</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-sd-6">
+            <div class="tabla-responsive">
+                <table class="table table-hover caption-top">
+                    <caption>Lista de Remesas</caption>
+                    <thead class="fw-bold table-dark">
+                        <td>ID</td>
+                        <td>Remitente</td>
+                        <td>Destinatario</td>
+                        <td>Pais Origen</td>
+                        <td>Pais Destino</td>
+                        <td>Monto Enviado</td>
+                        <td>Moneda Enviado</td>
+                        <td>Tipo de Cambio</td>
+                        <td>Monto Recibido</td>
+                        <td>Moneda Recibido</td>
+                        <td>Estado</td>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        @if (Model.ListRegistro != null)
+                        {
+                            foreach (var item in Model.ListRegistro)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Remitente)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Destinatario)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.PaisOrigen)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.PaisDestino)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.MontoEnviado)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.MonedaEnviado)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.TipoCambio)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.MontoRecibido)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.MonedaRecibido)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Estado)</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
